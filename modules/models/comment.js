@@ -5,7 +5,7 @@ const CommentSchema = new Schema({
     fullName: { type: String, required: true },
     email: { type: String },
     text: { type: String, required: true },
-    id: { type:mongoose.Schema.ObjectId, required: true ,},
+    id: { type:mongoose.Schema.ObjectId, required: true ,ref:'Course'},
     date:{ type: String},
     active: { type: Boolean, default: 'false' },
 

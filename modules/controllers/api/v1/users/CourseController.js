@@ -39,7 +39,7 @@ module.exports = new class CourseController extends Controller {
                         type: req.body.episode[0].type,
                         body: req.body.episode[0].body,
                         time: req.body.episode[0].time,
-                        number:req.body.episode[0].number,
+                        number:req.body.episode[0].Number,
                         videoUrl: req.body.episode[0].videoUrl,
                     }).save(err => {
                 if(err) {
@@ -48,16 +48,14 @@ module.exports = new class CourseController extends Controller {
                                 message:err,
                                 success: false
                             }); 
-                }});
-                continue;
                 }
-                if (newEpisode) {
-                            return res.json({
-                                data: 'دوره جدید با موفقیت ثبت شد',
-                                message:req.body.episode.length,
-                                success: true
-                            });
-                        } 
+                        return res.json({
+                            data: 'دوره جدید با موفقیت ثبت شد',
+                            success: true
+                        });
+                    });
+                }
+
                 }
                
             })
@@ -96,26 +94,26 @@ module.exports = new class CourseController extends Controller {
         }
     }
 
-    async single(req, res, next) {
-        try {
+     single(req, res, next) {
 
-            let result = await this.model.Course.find({_id: req.body._id}).populate('Episode user');
-            if (result.length > 0) {
-                return res.json({
-                    data: result,
-                    success: true
-                })
+            this.model.Course.find({}).populate('Episode CustomerUser Comment').exec((err,result)=>{
+                if(err) throw err;
+                if (result) {
+                    return res.json({
+                        data: result,
+                        success: true
+                    })
 
-            } else {
-                return res.json({
-                    data: 'وجود ندارد',
-                    success: false
-                })
-            }
+                } else {
+                    return res.json({
+                        data: 'وجود ندارد',
+                        success: false
+                    })
+                }
+            });
 
-        } catch (err) {
-            next(err);
-        }
+
+
     }
      courseUser(req, res, next) {
       

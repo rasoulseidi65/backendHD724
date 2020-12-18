@@ -60,7 +60,7 @@ module.exports = new class CommentController extends Controller {
         req.checkBody('text', ' متن نمیتواند خالی بماند').notEmpty();
         req.checkBody('id', 'کد محصول نمیتواند خالی بماند').notEmpty();
 
-        this.escapeAndTrim(req, 'product_id  seller_id');
+
         if (this.showValidationErrors(req, res))
             return;
         let newComment = new this.model.Comment({

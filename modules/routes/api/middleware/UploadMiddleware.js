@@ -46,7 +46,7 @@ const VideoStorage = multer.diskStorage({
 });
 
 const videoFilter = (req , file , cb) => {
-    if(file.mimetype === "video/mp4" || file.mimetype === "video/ogg") {
+    if(file.mimetype === "video/mp4" || file.mimetype === "video/ogg"  || file.mimetype === "video/wmv") {
         cb(null , true)
     } else {
         cb(null , false)
@@ -56,7 +56,7 @@ const videoFilter = (req , file , cb) => {
 const uploadVideo = multer({
     storage : VideoStorage,
     limits : {
-        fileSize : 2048 * 2048 * 800
+        fileSize : 2048 * 2048 * 4096
     },
     fileFilter : videoFilter
 });

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const mongoosePaginate = require('mongoose-paginate');
 const CourseSchema = new Schema({
-    userID:{type:Schema.Types.ObjectId},
+    userID:{type:Schema.Types.ObjectId, ref:'CustomerUser'},
     title: { type: String, required: true },
     categories:{type: String, required: true},
     type: { type: String, required: true },//free/vip/cash
@@ -28,10 +28,15 @@ CourseSchema.virtual('Episode',{
     foreignField:'courseID',
 
 });
-CourseSchema.virtual('user',{
-    ref:'User',
+CourseSchema.virtual('CustomerUser',{
+    ref:'CustomerUser',
     localField:'userID',
     foreignField:'_id',
+});
+CourseSchema.virtual('Comment',{
+    ref:'Comment',
+    localField:'_id',
+    foreignField:'id',
 });
 CourseSchema.plugin(mongoosePaginate);
 module.exports = mongoose.model('Course', CourseSchema);
