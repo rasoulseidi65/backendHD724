@@ -35,8 +35,6 @@ module.exports = new class CategoryQuestionsController extends Controller {
     }
 
     store(req, res) {
-        req.checkBody('title', ' نام دسته نمیتواند خالی بماند').notEmpty();
-        this.escapeAndTrim(req, 'title');
         if (this.showValidationErrors(req, res))
             return;
         let newCategory = new this.model.Question({
