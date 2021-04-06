@@ -18,9 +18,14 @@ const Wallet = require(`${config.path.model}/wallet`);
 const Article=require(`${config.path.model}/article`);
 const Course=require(`${config.path.model}/course`);
 const Episode=require(`${config.path.model}/episode`);
+const CategoryQuestions=require(`${config.path.model}/categoryQuestions`);
+const subCategoryQuestions=require(`${config.path.model}/subCategoryQuestions`);
+const Question=require(`${config.path.model}/question`);
 module.exports = class Controller {
     constructor() {
-        this.model = { AdminUser,Course,Episode,Article, CustomerUser, Comment, Answer, Teacher,  Products, CartCustom, City, Country, Slider, Province,Rating  ,Payment,Wallet}
+        this.model = { AdminUser,Course,Episode,Article, CustomerUser,
+            Comment,Question, Answer, Teacher,  Products, CartCustom, City, Country,
+            Slider, Province,Rating  ,Payment,Wallet,CategoryQuestions,subCategoryQuestions}
     }
     showValidationErrors(req, res, callback) {
         let errors = req.validationErrors();
@@ -38,8 +43,6 @@ module.exports = class Controller {
         }
         return false
     }
-
-
     escapeAndTrim(req, items) {
         items.split(' ').forEach(item => {
             req.sanitize(item).escape();

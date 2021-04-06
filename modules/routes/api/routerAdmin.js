@@ -28,8 +28,9 @@ const AdminCartcustomController = require(`${ControllerApi}/v1/admin/CartcustomC
 const AdminUploadController = require(`${ControllerApi}/v1/admin/UploadController`);
 const CourseController = require(`${ControllerApi}/v1/admin/CourseController`);
 const EposideController = require(`${ControllerApi}/v1/admin/EposideController`);
-
-
+const QuestionController = require(`${ControllerApi}/v1/admin/QuestionsController`);
+const CategoryQuestionsController = require(`${ControllerApi}/v1/admin/CategoryQuestionsController`);
+const SubCategoryQuestionsController = require(`${ControllerApi}/v1/admin/subCategoryQuestionsController`);
 //admin router*********************************************
 //article
 adminRouter.post('/article', AdminArticleController.store.bind(AdminArticleController));
@@ -117,6 +118,22 @@ adminRouter.get('/cartcustom/:id', AdminCartcustomController.single.bind(AdminCa
 
 adminRouter.post('/login', AdminAuthUserController.login.bind(AdminAuthUserController));
 adminRouter.post('/register', AdminAuthUserController.register.bind(AdminAuthUserController));
+
+//Questions
+adminRouter.get('/question', QuestionController.index.bind(QuestionController));
+adminRouter.post('/question', QuestionController.store.bind(QuestionController));
+adminRouter.get('/question/:id', QuestionController.single.bind(QuestionController));
+adminRouter.delete('/question/:id', QuestionController.destroy.bind(QuestionController));
+//CategoryQuestions and subCategory
+adminRouter.get('/CategoryQuestions', CategoryQuestionsController.index.bind(CategoryQuestionsController));
+adminRouter.post('/CategoryQuestions', CategoryQuestionsController.store.bind(CategoryQuestionsController));
+adminRouter.get('/CategoryQuestions/:id', CategoryQuestionsController.single.bind(CategoryQuestionsController));
+adminRouter.delete('/CategoryQuestions/:id', CategoryQuestionsController.destroy.bind(CategoryQuestionsController));
+
+adminRouter.get('/subCategoryQuestions', SubCategoryQuestionsController.index.bind(SubCategoryQuestionsController));
+adminRouter.post('/subCategoryQuestions', SubCategoryQuestionsController.store.bind(SubCategoryQuestionsController));
+adminRouter.get('/subCategoryQuestions/:id', SubCategoryQuestionsController.single.bind(SubCategoryQuestionsController));
+adminRouter.delete('/subCategoryQuestions/:id', SubCategoryQuestionsController.destroy.bind(SubCategoryQuestionsController));
 
 router.use('', adminRouter);
 module.exports = router;
