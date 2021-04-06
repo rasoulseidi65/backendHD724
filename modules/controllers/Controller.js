@@ -21,9 +21,10 @@ const Episode=require(`${config.path.model}/episode`);
 const CategoryQuestions=require(`${config.path.model}/categoryQuestions`);
 const subCategoryQuestions=require(`${config.path.model}/subCategoryQuestions`);
 const Question=require(`${config.path.model}/question`);
+const Handout=require(`${config.path.model}/handout`);
 module.exports = class Controller {
     constructor() {
-        this.model = { AdminUser,Course,Episode,Article, CustomerUser,
+        this.model = { AdminUser,Course,Episode,Article, CustomerUser,Handout,
             Comment,Question, Answer, Teacher,  Products, CartCustom, City, Country,
             Slider, Province,Rating  ,Payment,Wallet,CategoryQuestions,subCategoryQuestions}
     }

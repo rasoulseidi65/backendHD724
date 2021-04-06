@@ -31,6 +31,8 @@ const EposideController = require(`${ControllerApi}/v1/admin/EposideController`)
 const QuestionController = require(`${ControllerApi}/v1/admin/QuestionsController`);
 const CategoryQuestionsController = require(`${ControllerApi}/v1/admin/CategoryQuestionsController`);
 const SubCategoryQuestionsController = require(`${ControllerApi}/v1/admin/subCategoryQuestionsController`);
+const HandoutController = require(`${ControllerApi}/v1/admin/HandoutController`);
+
 //admin router*********************************************
 //article
 adminRouter.post('/article', AdminArticleController.store.bind(AdminArticleController));
@@ -134,6 +136,12 @@ adminRouter.get('/subCategoryQuestions', SubCategoryQuestionsController.index.bi
 adminRouter.post('/subCategoryQuestions', SubCategoryQuestionsController.store.bind(SubCategoryQuestionsController));
 adminRouter.get('/subCategoryQuestions/:id', SubCategoryQuestionsController.single.bind(SubCategoryQuestionsController));
 adminRouter.delete('/subCategoryQuestions/:id', SubCategoryQuestionsController.destroy.bind(SubCategoryQuestionsController));
+
+//handout
+adminRouter.get('/handout', HandoutController.index.bind(HandoutController));
+adminRouter.post('/handout', HandoutController.store.bind(HandoutController));
+adminRouter.get('/handout/:id', HandoutController.single.bind(HandoutController));
+adminRouter.delete('/handout/:id', HandoutController.destroy.bind(HandoutController));
 
 router.use('', adminRouter);
 module.exports = router;
