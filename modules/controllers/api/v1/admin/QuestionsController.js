@@ -45,6 +45,7 @@ module.exports = new class CategoryQuestionsController extends Controller {
             answer:req.body.answer,
             typeQuestion:req.body.typeQuestion,
             text:req.body.text,
+            section:req.body.section
         })
         newCategory.save(err => {
             if (err) throw err;
@@ -64,6 +65,7 @@ module.exports = new class CategoryQuestionsController extends Controller {
             answer:req.body.answer,
             typeQuestion:req.body.typeQuestion,
             text:req.body.text,
+            section:req.body.section
         }, (err, result) => {
             if (err) throw err;
             if (result) {
