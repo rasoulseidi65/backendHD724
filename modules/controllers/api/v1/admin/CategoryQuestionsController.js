@@ -40,11 +40,15 @@ module.exports = new class CategoryQuestionsController extends Controller {
         if (this.showValidationErrors(req, res))
             return;
         let newCategory = new this.model.CategoryQuestions({
-            title: req.body.title
+            title: req.body.title,
+            image:req.body.image
         })
         newCategory.save(err => {
             if (err) throw err;
-            res.json('دسته  جدید با موفقیت ثبت شد');
+            return res.json({
+                data: 'دسته با موفقیت ثبت شد',
+                success: true
+            })
         })
     }
 
@@ -54,6 +58,7 @@ module.exports = new class CategoryQuestionsController extends Controller {
             return;
         this.model.CategoryQuestions.findByIdAndUpdate(req.params.id, {
             title: req.body.title,
+            image:req.body.image
         }, (err, result) => {
             if (err) throw err;
             if (result) {

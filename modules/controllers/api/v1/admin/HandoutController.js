@@ -48,7 +48,11 @@ module.exports = new class HandoutController extends Controller {
         })
         newCategory.save(err => {
             if (err) throw err;
-            res.json('نمونه سوال  جدید با موفقیت ثبت شد');
+            return res.json({
+                data: ' نمونه سوال  جدید با موفقیت ثبت شد',
+                success: true
+            });
+
         })
     }
 
