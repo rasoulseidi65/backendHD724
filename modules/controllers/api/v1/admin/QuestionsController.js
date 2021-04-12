@@ -46,7 +46,7 @@ module.exports = new class CategoryQuestionsController extends Controller {
             typeQuestion:req.body.typeQuestion,
             text:req.body.text,
             section:req.body.section,
-            categoryQuestionID:req.body.categoryQuestionID
+            majorID:req.body.majorID
 
         })
         newCategory.save(err => {
@@ -71,7 +71,7 @@ module.exports = new class CategoryQuestionsController extends Controller {
             typeQuestion:req.body.typeQuestion,
             text:req.body.text,
             section:req.body.section,
-            categoryQuestionID:req.body.categoryQuestionID
+            majorID:req.body.majorID
         }, (err, result) => {
             if (err) throw err;
             if (result) {
