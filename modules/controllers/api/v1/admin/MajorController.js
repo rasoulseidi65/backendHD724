@@ -40,6 +40,7 @@ module.exports = new class MajorController extends Controller {
         if (this.showValidationErrors(req, res))
             return;
         let newCategory = new this.model.Major({
+            gradeID:req.body.gradeID,
             title: req.body.title,
             image:req.body.image
         })
@@ -57,6 +58,7 @@ module.exports = new class MajorController extends Controller {
         if (this.showValidationErrors(req, res))
             return;
         this.model.Major.findByIdAndUpdate(req.params.id, {
+            gradeID:req.body.gradeID,
             title: req.body.title,
             image:req.body.image
         }, (err, result) => {
