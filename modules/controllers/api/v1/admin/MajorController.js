@@ -1,7 +1,7 @@
 const Controller = require(`${config.path.controller}/Controller`);
 module.exports = new class MajorController extends Controller {
     index(req, res) {
-        this.model.Major.find({}).populate('Grade').exec((err, result) => {
+        this.model.Major.find({}).populate('Grade Question').exec((err, result) => {
             if (err) throw err;
             if (result) {
                 return res.json({

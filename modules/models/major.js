@@ -12,4 +12,10 @@ MajorSchema.virtual('Grade',{
     localField:'gradeID',
     foreignField:'_id',
 });
+
+MajorSchema.virtual('Question',{
+    ref:'Major',
+    localField:'majorID',
+    foreignField:'_id',
+});
 module.exports = mongoose.model('Major', MajorSchema);

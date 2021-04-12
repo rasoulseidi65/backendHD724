@@ -8,7 +8,7 @@ const QuestionSchema = new Schema({
     count: { type: String, required: true },
     answer:{ type: String, default:'ندارد' },
     typeQuestion:{ type: String },
-    section:{ type: String },
+    tag:{ type: String },
     text:{ type: String,},
 
 },{toJSON:{virtuals:true}});

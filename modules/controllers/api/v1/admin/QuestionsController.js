@@ -45,7 +45,7 @@ module.exports = new class CategoryQuestionsController extends Controller {
             answer:req.body.answer,
             typeQuestion:req.body.typeQuestion,
             text:req.body.text,
-            section:req.body.section,
+            tag:req.body.tag,
             majorID:req.body.majorID
 
         })
@@ -70,7 +70,7 @@ module.exports = new class CategoryQuestionsController extends Controller {
             answer:req.body.answer,
             typeQuestion:req.body.typeQuestion,
             text:req.body.text,
-            section:req.body.section,
+            tag:req.body.tag,
             majorID:req.body.majorID
         }, (err, result) => {
             if (err) throw err;
