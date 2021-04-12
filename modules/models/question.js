@@ -15,6 +15,6 @@ const QuestionSchema = new Schema({
 QuestionSchema.virtual('CategoryQuestions',{
     ref:'CategoryQuestions',
     localField:'categoryQuestionID',
-    foreignField:'id',
+    foreignField:'_id',
 });
 module.exports = mongoose.model('Question', QuestionSchema);
