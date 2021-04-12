@@ -29,10 +29,10 @@ const AdminUploadController = require(`${ControllerApi}/v1/admin/UploadControlle
 const CourseController = require(`${ControllerApi}/v1/admin/CourseController`);
 const EposideController = require(`${ControllerApi}/v1/admin/EposideController`);
 const QuestionController = require(`${ControllerApi}/v1/admin/QuestionsController`);
-const CategoryQuestionsController = require(`${ControllerApi}/v1/admin/CategoryQuestionsController`);
+const MajorController = require(`${ControllerApi}/v1/admin/MajorController`);
 const SubCategoryQuestionsController = require(`${ControllerApi}/v1/admin/subCategoryQuestionsController`);
 const HandoutController = require(`${ControllerApi}/v1/admin/HandoutController`);
-
+const GradeController = require(`${ControllerApi}/v1/admin/GradeController`);
 //admin router*********************************************
 //article
 adminRouter.post('/article', AdminArticleController.store.bind(AdminArticleController));
@@ -127,10 +127,11 @@ adminRouter.post('/question', QuestionController.store.bind(QuestionController))
 adminRouter.get('/question/:id', QuestionController.single.bind(QuestionController));
 adminRouter.delete('/question/:id', QuestionController.destroy.bind(QuestionController));
 //CategoryQuestions and subCategory
-adminRouter.get('/CategoryQuestions', CategoryQuestionsController.index.bind(CategoryQuestionsController));
-adminRouter.post('/CategoryQuestions', CategoryQuestionsController.store.bind(CategoryQuestionsController));
-adminRouter.get('/CategoryQuestions/:id', CategoryQuestionsController.single.bind(CategoryQuestionsController));
-adminRouter.delete('/CategoryQuestions/:id', CategoryQuestionsController.destroy.bind(CategoryQuestionsController));
+adminRouter.get('/major', MajorController.index.bind(MajorController)
+);
+adminRouter.post('/major', MajorController.store.bind(MajorController));
+adminRouter.get('/major/:id', MajorController.single.bind(MajorController));
+adminRouter.delete('/major/:id', MajorController.destroy.bind(MajorController));
 
 adminRouter.get('/subCategoryQuestions', SubCategoryQuestionsController.index.bind(SubCategoryQuestionsController));
 adminRouter.post('/subCategoryQuestions', SubCategoryQuestionsController.store.bind(SubCategoryQuestionsController));
@@ -142,6 +143,10 @@ adminRouter.get('/handout', HandoutController.index.bind(HandoutController));
 adminRouter.post('/handout', HandoutController.store.bind(HandoutController));
 adminRouter.get('/handout/:id', HandoutController.single.bind(HandoutController));
 adminRouter.delete('/handout/:id', HandoutController.destroy.bind(HandoutController));
-
+//grade
+adminRouter.get('/grade', GradeController.index.bind(GradeController));
+adminRouter.post('/grade', GradeController.store.bind(GradeController));
+adminRouter.get('/grade/:id', GradeController.single.bind(GradeController));
+adminRouter.delete('/grade/:id', GradeController.destroy.bind(GradeController));
 router.use('', adminRouter);
 module.exports = router;

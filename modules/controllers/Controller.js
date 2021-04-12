@@ -18,15 +18,16 @@ const Wallet = require(`${config.path.model}/wallet`);
 const Article=require(`${config.path.model}/article`);
 const Course=require(`${config.path.model}/course`);
 const Episode=require(`${config.path.model}/episode`);
-const CategoryQuestions=require(`${config.path.model}/categoryQuestions`);
+const Major=require(`${config.path.model}/Major`);
 const subCategoryQuestions=require(`${config.path.model}/subCategoryQuestions`);
 const Question=require(`${config.path.model}/question`);
 const Handout=require(`${config.path.model}/handout`);
+const Grade=require(`${config.path.model}/grade`);
 module.exports = class Controller {
     constructor() {
-        this.model = { AdminUser,Course,Episode,Article, CustomerUser,Handout,
+        this.model = { AdminUser,Course,Episode,Article, CustomerUser,Handout,Grade,
             Comment,Question, Answer, Teacher,  Products, CartCustom, City, Country,
-            Slider, Province,Rating  ,Payment,Wallet,CategoryQuestions,subCategoryQuestions}
+            Slider, Province,Rating  ,Payment,Wallet,Major,subCategoryQuestions}
     }
     showValidationErrors(req, res, callback) {
         let errors = req.validationErrors();

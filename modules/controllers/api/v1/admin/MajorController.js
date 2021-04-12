@@ -1,7 +1,7 @@
 const Controller = require(`${config.path.controller}/Controller`);
-module.exports = new class CategoryQuestionsController extends Controller {
+module.exports = new class MajorController extends Controller {
     index(req, res) {
-        this.model.CategoryQuestions.find({}).exec((err, result) => {
+        this.model.Major.find({}).populate('Grade').exec((err, result) => {
             if (err) throw err;
             if (result) {
                 return res.json({
@@ -10,7 +10,7 @@ module.exports = new class CategoryQuestionsController extends Controller {
                 });
             }
             res.json({
-                data: 'چنین دسته ای وجود ندارد',
+                data: 'چنین رشته تحصیلی وجود ندارد',
                 success: false
             })
         });
@@ -20,7 +20,7 @@ module.exports = new class CategoryQuestionsController extends Controller {
         req.checkParams('id', 'ای دی وارد شده صحیح نیست').isMongoId();
         if (this.showValidationErrors(req, res))
             return;
-        this.model.CategoryQuestions.findById(req.params.id, (err, result) => {
+        this.model.Major.findById(req.params.id, (err, result) => {
             if (result) {
                 return res.json({
                     data: result,
@@ -35,18 +35,18 @@ module.exports = new class CategoryQuestionsController extends Controller {
     }
 
     store(req, res) {
-        req.checkBody('title', ' نام دسته نمیتواند خالی بماند').notEmpty();
+        req.checkBody('title', ' نام رشته تحصیلی نمیتواند خالی بماند').notEmpty();
         this.escapeAndTrim(req, 'title');
         if (this.showValidationErrors(req, res))
             return;
-        let newCategory = new this.model.CategoryQuestions({
+        let newCategory = new this.model.Major({
             title: req.body.title,
             image:req.body.image
         })
         newCategory.save(err => {
             if (err) throw err;
             return res.json({
-                data: 'دسته با موفقیت ثبت شد',
+                data: 'رشته تحصیلی با موفقیت ثبت شد',
                 success: true
             })
         })
@@ -56,19 +56,19 @@ module.exports = new class CategoryQuestionsController extends Controller {
         req.checkParams('id', 'ای دی وارد شده صحیح نیست').isMongoId();
         if (this.showValidationErrors(req, res))
             return;
-        this.model.CategoryQuestions.findByIdAndUpdate(req.params.id, {
+        this.model.Major.findByIdAndUpdate(req.params.id, {
             title: req.body.title,
             image:req.body.image
         }, (err, result) => {
             if (err) throw err;
             if (result) {
                 return res.json({
-                    data: ' دسته با موفقیت آپدیت شد',
+                    data: ' رشته تحصیلی با موفقیت آپدیت شد',
                     success: true
                 });
             }
             res.status(404).json({
-                data: 'چنین دسته ای وجود ندارد',
+                data: 'چنین رشته تحصیلی وجود ندارد',
                 success: false
             });
         });
@@ -78,16 +78,16 @@ module.exports = new class CategoryQuestionsController extends Controller {
         req.checkParams('id', 'ای دی وارد شده صحیح نیست').isMongoId();
         if (this.showValidationErrors(req, res))
             return;
-        this.model.CategoryQuestions.findByIdAndRemove(req.params.id, (err, result) => {
+        this.model.Major.findByIdAndRemove(req.params.id, (err, result) => {
             if (err) throw err;
             if (result) {
                 return res.json({
-                    data: 'دسته با موفقیت حذف شد',
+                    data: 'رشته تحصیلی با موفقیت حذف شد',
                     success: true
                 });
             }
             res.status(404).json({
-                data: 'چنین دسته وجود ندارد',
+                data: 'چنین رشته تحصیلی وجود ندارد',
                 success: false
             });
         });
