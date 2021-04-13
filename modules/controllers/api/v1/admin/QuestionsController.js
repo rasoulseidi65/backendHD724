@@ -33,7 +33,20 @@ module.exports = new class CategoryQuestionsController extends Controller {
             })
         })
     }
-
+    findByMajorID(req, res) {
+        this.model.Question.Question.find({majorID:req.body.majorID}).populate('Major').exec((err, result) => {
+            if (result) {
+                return res.json({
+                    data: result,
+                    success: true
+                })
+            }
+            res.json({
+                data: 'یافت نشد',
+                success: false
+            })
+        })
+    }
     store(req, res) {
         if (this.showValidationErrors(req, res))
             return;

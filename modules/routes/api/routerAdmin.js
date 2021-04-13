@@ -126,6 +126,8 @@ adminRouter.get('/question', QuestionController.index.bind(QuestionController));
 adminRouter.post('/question', QuestionController.store.bind(QuestionController));
 adminRouter.get('/question/:id', QuestionController.single.bind(QuestionController));
 adminRouter.delete('/question/:id', QuestionController.destroy.bind(QuestionController));
+adminRouter.post('/findByMajorID', QuestionController.findByMajorID.bind(QuestionController));
+
 //CategoryQuestions and subCategory
 adminRouter.get('/major', MajorController.index.bind(MajorController)
 );
