@@ -34,7 +34,7 @@ module.exports = new class CategoryQuestionsController extends Controller {
         })
     }
     findByMajorID(req, res) {
-        this.model.Question.Question.find({majorID:req.body.majorID}).populate('Major').exec((err, result) => {
+        this.model.Question.find({majorID:req.body.majorID}).populate('Major').exec((err, result) => {
             if (result) {
                 return res.json({
                     data: result,
