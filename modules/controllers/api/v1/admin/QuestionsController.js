@@ -63,11 +63,18 @@ module.exports = new class CategoryQuestionsController extends Controller {
 
         })
         newCategory.save(err => {
-            if (err) throw err;
-            return res.json({
-                data: 'نمونه سوال  جدید با موفقیت ثبت شد',
-                success: true
-            });
+            if (err) {
+                return res.json({
+                    data: 'اطلاعات نادرست است',
+                    success: false
+                });
+            }
+            else {
+                return res.json({
+                    data: 'نمونه سوال  جدید با موفقیت ثبت شد',
+                    success: true
+                });
+            }
         })
     }
 
