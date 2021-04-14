@@ -1,7 +1,7 @@
 const path = require('path');
 const bcrypt = require('bcrypt');
 module.exports = {
-    port : 1025,
+    port : 3125,
     host:'http://localhost:',
     secret :'sadas@!$@#%!^#!GSDGETWT@#OI%J@#%!*#)^U#)^U!@)U',
     //secret : bcrypt.hashSync('sadas@!$@#%!^#!GSDGETWT@#OI%J@#%!*#)^U#)^U!@)U', 10),
