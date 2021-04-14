@@ -38,7 +38,7 @@ module.exports = new class CourseController extends Controller {
     }
     async single(req, res, next) {
         try {
-            let result= await this.model.Course.findById(req.body._id);
+            let result= await this.model.Course.findOne({_id:req.body._id});
             if(result.length>0){
                 return res.json({
                     data:result,
