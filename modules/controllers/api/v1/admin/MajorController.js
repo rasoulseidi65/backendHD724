@@ -36,7 +36,10 @@ module.exports = new class MajorController extends Controller {
 
     store(req, res) {
         req.checkBody('title', ' نام رشته تحصیلی نمیتواند خالی بماند').notEmpty();
-        this.escapeAndTrim(req, 'title');
+        req.checkBody('gradeID', ' نام مقطع تحصیلی نمیتواند خالی بماند').notEmpty();
+        req.checkBody('image', ' تصویر نمیتواند خالی بماند').notEmpty();
+        this.escapeAndTrim(req, 'title gradeID image');
+
         if (this.showValidationErrors(req, res))
             return;
         let newCategory = new this.model.Major({
