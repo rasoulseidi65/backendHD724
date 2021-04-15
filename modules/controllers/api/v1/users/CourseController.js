@@ -67,14 +67,9 @@ module.exports = new class CourseController extends Controller {
         }
     }
 
-
-
-
      index(req, res, next) {
         try {
                     this.model.Course.find({}).exec((err , result) => {
-
-          
             if (result) {
                 return res.json({
                     data: result,
@@ -95,7 +90,6 @@ module.exports = new class CourseController extends Controller {
     }
 
      single(req, res, next) {
-
             this.model.Course.findOne({_id:req.body._id}).populate('Episode CustomerUser Comment').exec((err,result)=>{
                 if(err) throw err;
                 if (result) {
@@ -103,7 +97,6 @@ module.exports = new class CourseController extends Controller {
                         data: result,
                         success: true
                     })
-
                 } else {
                     return res.json({
                         data: 'وجود ندارد',
@@ -111,13 +104,10 @@ module.exports = new class CourseController extends Controller {
                     })
                 }
             });
-
-
-
     }
      courseUser(req, res, next) {
       
-    this.model.Course.find({userID:req.body.userID}).exec((err, result) => {
+    this.model.Course.findOne({userID:req.body.userID}).exec((err, result) => {
                 if (err) throw err;
             if (result) {
                 return res.json({
