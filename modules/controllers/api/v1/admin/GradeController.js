@@ -35,7 +35,7 @@ module.exports = new class GradeController extends Controller {
     }
 
     store(req, res) {
-        req.checkBody('title', ' نام مقطعی نمیتواند خالی بماند').notEmpty();
+        req.checkBody('title', ' نام مقطع نمیتواند خالی بماند').notEmpty();
         this.escapeAndTrim(req, 'title');
         if (this.showValidationErrors(req, res))
             return;

@@ -34,6 +34,10 @@ module.exports = new class CategoryQuestionsController extends Controller {
         })
     }
     findByMajorID(req, res) {
+        req.checkBody('majorID', ' کد رشته تحصیلی نمیتواند خالی بماند').notEmpty();
+        this.escapeAndTrim(req, 'majorID');
+        if (this.showValidationErrors(req, res))
+            return;
         this.model.Question.find({majorID:req.body.majorID}).populate('Major').exec((err, result) => {
             if (result!=null) {
                 return res.json({
@@ -48,6 +52,13 @@ module.exports = new class CategoryQuestionsController extends Controller {
         })
     }
     store(req, res) {
+        req.checkBody('title', ' عنوان نمونه سوال نمیتواند خالی بماند').notEmpty();
+        req.checkBody('price', ' قیمت نمیتواند خالی بماند').notEmpty();
+        req.checkBody('linkFile', ' آدرس فایل نمیتواند خالی بماند').notEmpty();
+        req.checkBody('answer', ' پاسخنامه نمیتواند خالی بماند').notEmpty();
+        req.checkBody('typeQuestion', ' نوع سوال نمیتواند خالی بماند').notEmpty();
+        req.checkBody('majorID', ' کد رشته تحصیلی نمیتواند خالی بماند').notEmpty();
+
         if (this.showValidationErrors(req, res))
             return;
         let newCategory = new this.model.Question({
