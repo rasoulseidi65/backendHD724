@@ -35,12 +35,12 @@ module.exports = new class HandoutController extends Controller {
     }
 
     store(req, res) {
-        req.checkParams('majorID', 'رشته تحصلی  وارد نکردید').notEmpty();
-        req.checkParams('title', 'عنوان  جزوه وارد نکردید').notEmpty();
-        req.checkParams('price', 'قیمت  جزوه وارد نکردید').notEmpty();
-        req.checkParams('linkFile', 'لینک  جزوه وارد نکردید').notEmpty();
-        req.checkParams('countPage', 'تعداد صفحه ها  جزوه وارد نکردید').notEmpty();
-        req.checkParams('author', 'نام مدرس  جزوه وارد نکردید').notEmpty();
+        // req.checkParams('majorID', 'رشته تحصلی  وارد نکردید').notEmpty();
+        // req.checkParams('title', 'عنوان  جزوه وارد نکردید').notEmpty();
+        // req.checkParams('price', 'قیمت  جزوه وارد نکردید').notEmpty();
+        // req.checkParams('linkFile', 'لینک  جزوه وارد نکردید').notEmpty();
+        // req.checkParams('countPage', 'تعداد صفحه ها  جزوه وارد نکردید').notEmpty();
+        // req.checkParams('author', 'نام مدرس  جزوه وارد نکردید').notEmpty();
         if (this.showValidationErrors(req, res))
             return;
         let newCategory = new this.model.Handout({
