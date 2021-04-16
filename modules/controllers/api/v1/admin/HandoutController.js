@@ -1,7 +1,7 @@
 const Controller = require(`${config.path.controller}/Controller`);
 module.exports = new class HandoutController extends Controller {
     index(req, res) {
-        this.model.Handout.find({}).exec((err, result) => {
+        this.model.Handout.find({}).populate('Major').exec((err, result) => {
             if (err) throw err;
             if (result) {
                 return res.json({
@@ -35,9 +35,16 @@ module.exports = new class HandoutController extends Controller {
     }
 
     store(req, res) {
+        req.checkParams('majorID', 'رشته تحصلی  وارد نکردید').isMongoId();
+        req.checkParams('title', 'عنوان  جزوه وارد نکردید').isMongoId();
+        req.checkParams('price', 'قیمت  جزوه وارد نکردید').isMongoId();
+        req.checkParams('linkFile', 'لینک  جزوه وارد نکردید').isMongoId();
+        req.checkParams('countPage', 'تعداد صفحه ها  جزوه وارد نکردید').isMongoId();
+        req.checkParams('author', 'نام مدرس  جزوه وارد نکردید').isMongoId();
         if (this.showValidationErrors(req, res))
             return;
         let newCategory = new this.model.Handout({
+            majorID:req.body.majorID,
             title: req.body.title,
             price: req.body.price,
             linkFile: req.body.linkFile,
@@ -61,6 +68,7 @@ module.exports = new class HandoutController extends Controller {
         if (this.showValidationErrors(req, res))
             return;
         this.model.Handout.findByIdAndUpdate(req.params.id, {
+            majorID:req.body.majorID,
             title: req.body.title,
             price: req.body.price,
             linkFile: req.body.linkFile,
