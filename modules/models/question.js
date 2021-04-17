@@ -10,7 +10,6 @@ const QuestionSchema = new Schema({
     typeQuestion:{ type: String },
     tag:{ type: String },
     text:{ type: String,},
-
 },{toJSON:{virtuals:true}});
 QuestionSchema.virtual('Major',{
     ref:'Major',
