@@ -1,7 +1,7 @@
 const Controller = require(`${config.path.controller}/Controller`);
 module.exports = new class CategoryQuestionsController extends Controller {
     index(req, res) {
-        this.model.Question.find({}).populate({patch:'Major',populate:[{
+        this.model.Question.find({}).populate({path:'Major',populate:[{
             path:'Grade',
                 model:'Grade'
             }]}).exec((err, result) => {
