@@ -23,10 +23,10 @@ const subCategoryQuestions=require(`${config.path.model}/subCategoryQuestions`);
 const Question=require(`${config.path.model}/question`);
 const Handout=require(`${config.path.model}/handout`);
 const Grade=require(`${config.path.model}/grade`);
-
+const Coupon=require(`${config.path.model}/coupon`);
 module.exports = class Controller {
     constructor() {
-        this.model = { AdminUser,Course,Episode,Article, CustomerUser,Handout,Grade,
+        this.model = { AdminUser,Course,Episode,Article, CustomerUser,Handout,Grade,Coupon,
             Comment,Question, Answer, Teacher,  Products, CartCustom, City, Country,
             Slider, Province,Rating  ,Payment,Wallet,Major,subCategoryQuestions}
     }
