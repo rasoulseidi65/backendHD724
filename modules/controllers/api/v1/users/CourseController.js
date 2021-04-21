@@ -30,13 +30,19 @@ module.exports = new class CourseController extends Controller {
                 } else {
                     this.model.Episode.insertMany(req.body.episode, (err, result)=>
                     {
-                        if(result)
-                        {
+                        if (err) {
+                            return res.json({
+                                data:err,
+                                message: err,
+                                success: false
+                            });
+                        } else
+
                                     return res.json({
                                         data: 'دوره جدید با موفقیت ثبت شد',
                                         success: true
                                     });
-                        }
+
                     }
                 )
                     // for (var i = 0; i < countRecord; i++) {
