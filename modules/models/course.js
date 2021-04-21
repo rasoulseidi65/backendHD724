@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const mongoosePaginate = require('mongoose-paginate');
 const CourseSchema = new Schema({
-    userID:{type:Schema.Types.ObjectId, ref:'CustomerUser'},
+    userID:{type:mongoose.Schema.ObjectId , ref:'CustomerUser'},
     title: { type: String, required: true },
     categories:{type: String, required: true},
     type: { type: String, required: true },//free/vip/cash
