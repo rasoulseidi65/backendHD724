@@ -4,12 +4,12 @@ const mongoosePaginate = require('mongoose-paginate');
 
 const episodeSchema = Schema({
     courseID : { type : Schema.Types.ObjectId , ref : 'Course'},
-    title : { type : String , required : true },
-    type : { type : String , required : true },//آزاد-ویژه-رایگان
+    title : { type : String},
+    type : { type : String },//آزاد-ویژه-رایگان
     body : { type : String },
     time : { type : String , default : '00:00:00' },//مدت زمان قسمت
-    number : { type : Number , required : true },//شماره جلسه
-    videoUrl : { type : String , required : true },
+    number : { type : Number ,  },//شماره جلسه
+    videoUrl : { type : String ,},
     downloadCount : { type : Number , default : 0 },
     viewCount : { type : Number , default : 0 },
     commentCount : { type : Number , default : 0 },

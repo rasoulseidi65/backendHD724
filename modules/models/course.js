@@ -3,13 +3,13 @@ const Schema = mongoose.Schema;
 const mongoosePaginate = require('mongoose-paginate');
 const CourseSchema = new Schema({
     userID:{type:mongoose.Schema.ObjectId , ref:'CustomerUser'},
-    title: { type: String, required: true },
-    categories:{type: String, required: true},
-    type: { type: String, required: true },//free/vip/cash
-    detail: { type: String, required: true },
-    abstract: { type: String, required: true },
-    price: { type: String, required: true },
-    priceSupport: { type: String, required: true },
+    title: { type: String, },
+    categories:{type: String, },
+    type: { type: String,  },//free/vip/cash
+    detail: { type: String,  },
+    abstract: { type: String,  },
+    price: { type: String,  },
+    priceSupport: { type: String,},
     image: { type: String, },
     level:{type: String,},
     titleTag:{type: String,},
