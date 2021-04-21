@@ -11,7 +11,6 @@ module.exports = new class AuthCustomerController extends Controller {
         });
     }
     register(req, res) {
-        console.log(req.body)
         req.checkBody('password', 'وارد کردن فیلد پسورد الزامیست').notEmpty();
         req.checkBody('mobile', 'وارد کردن فیلد موبایل الزامیست').notEmpty();
         if (this.showValidationErrors(req, res))

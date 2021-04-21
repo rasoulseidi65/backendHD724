@@ -1,128 +1,136 @@
 const Controller = require(`${config.path.controller}/Controller`);
 
 module.exports = new class CourseController extends Controller {
-      
-            store(req, res, next) {
+
+    store(req, res, next) {
         try {
-        console.log(req.body);
             let newCourse = new this.model.Course({
-                userID:req.body.course.userID,
-                title:req.body.course.title ,
-                categories:req.body.course.categories ,
-                type:req.body.course.type  ,
-                detail:req.body.course.detail  ,
-                abstract:req.body.course.abstract  ,
-                price:req.body.course.price ,
-                priceSupport:req.body.course.priceSupport ,
-                image:req.body.course.image  ,
-                level:req.body.course.level ,
-                titleTag:req.body.course.titleTag ,
-                keyTag:req.body.course.keyTag ,
-                timeCourse:req.body.course.timeCourse ,//زمان دوره
-                sizeCourse:req.body.course.sizeCourse ,
+                userID: req.body.course.userID,
+                title: req.body.course.title,
+                categories: req.body.course.categories,
+                type: req.body.course.type,
+                detail: req.body.course.detail,
+                abstract: req.body.course.abstract,
+                price: req.body.course.price,
+                priceSupport: req.body.course.priceSupport,
+                image: req.body.course.image,
+                level: req.body.course.level,
+                titleTag: req.body.course.titleTag,
+                keyTag: req.body.course.keyTag,
+                timeCourse: req.body.course.timeCourse,//زمان دوره
+                sizeCourse: req.body.course.sizeCourse,
             })
             newCourse.save(err => {
-                if(err) {
-                   return res.json({
-                                data: 'خطا',
-                                message:err,
-                                success: false
-                            }); 
-                }
-                else{
-                    let countRecord=req.body.episode.length;
-                for(var i=0;i<1 ;i++)
-                {
-                    let newEpisode = new this.model.Episode({
-                        courseID: newCourse['_doc']._id,
-                        title: req.body.episode[0].title,
-                        type: req.body.episode[0].type,
-                        body: req.body.episode[0].body,
-                        time: req.body.episode[0].time,
-                        number:req.body.episode[0].Number,
-                        videoUrl: req.body.episode[0].videoUrl,
-                    }).save(err => {
-                if(err) {
-                   return res.json({
-                                data: 'خطا',
-                                message:err,
-                                success: false
-                            }); 
-                }
-                        return res.json({
-                            data: 'دوره جدید با موفقیت ثبت شد',
-                            success: true
-                        });
+                if (err) {
+                    return res.json({
+                        data: 'خطا',
+                        message: err,
+                        success: false
                     });
-                }
+                } else {
+                    this.model.Episode.insertMany(req.body.episode, (err, result)=>
+                    {
+                        if(result)
+                        {
+                                    return res.json({
+                                        data: 'دوره جدید با موفقیت ثبت شد',
+                                        success: true
+                                    });
+                        }
+                    }
+                )
+                    // for (var i = 0; i < countRecord; i++) {
+                    //     let newEpisode = new this.model.Episode({
+                    //         courseID: newCourse['_doc']._id,
+                    //         title: req.body.episode[i].title,
+                    //         type: req.body.episode[i].type,
+                    //         body: req.body.episode[i].body,
+                    //         time: req.body.episode[i].time,
+                    //         number: req.body.episode[i].Number,
+                    //         videoUrl: req.body.episode[i].videoUrl,
+                    //     }).save(err => {
+                    //         if (err) {
+                    //             return res.json({
+                    //                 data: 'خطا',
+                    //                 message: err,
+                    //                 success: false
+                    //             });
+                    //         }
+                    //         return res.json({
+                    //             data: 'دوره جدید با موفقیت ثبت شد',
+                    //             success: true
+                    //         });
+                    //     });
+                    // }
 
                 }
-               
+
             })
 
 
-
         } catch (err) {
             next(err);
         }
     }
 
-     index(req, res, next) {
+    index(req, res, next) {
         try {
-                    this.model.Course.find({}).populate('Episode CustomerUser Comment').exec((err , result) => {
-            if (result) {
-                return res.json({
-                    data: result,
-                    success: true
-                })
-
-            } else {
-                return res.json({
-                    data: result,
-                    success: false
-                })
-            }
-                    })
-
-        } catch (err) {
-            next(err);
-        }
-    }
-
-     single(req, res, next) {
-            this.model.Course.findOne({_id:req.body._id}).populate('Episode CustomerUser Comment').exec((err,result)=>{
-                if(err) throw err;
+            this.model.Course.find({}).populate('Episode CustomerUser Comment').exec((err, result) => {
                 if (result) {
                     return res.json({
                         data: result,
                         success: true
                     })
+
                 } else {
                     return res.json({
-                        data: 'وجود ندارد',
+                        data: result,
                         success: false
                     })
                 }
-            });
+            })
+
+        } catch (err) {
+            next(err);
+        }
     }
-     courseUser(req, res, next) {
-      
-    this.model.Course.findOne({userID:req.body.userID}).exec((err, result) => {
-                if (err) throw err;
+
+    single(req, res, next) {
+        this.model.Course.findOne({_id: req.body._id}).populate('Episode CustomerUser Comment').exec((err, result) => {
+            if (err) throw err;
+            if (result) {
+                return res.json({
+                    data: result,
+                    success: true
+                })
+            } else {
+                return res.json({
+                    data: 'وجود ندارد',
+                    success: false
+                })
+            }
+        });
+    }
+
+    courseUser(req, res, next) {
+
+        this.model.Course.findOne({userID: req.body.userID}).exec((err, result) => {
+            if (err) throw err;
             if (result) {
                 return res.json({
                     data: result,
                     success: true
                 });
             }
-           return res.json({
+            return res.json({
                 data: 'هیچ پاسخی وجود ندارد',
                 success: false
             })
         });
 
-      
+
     }
+
     async newCourse(req, res, next) {
         try {
 
