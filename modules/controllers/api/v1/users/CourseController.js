@@ -69,7 +69,7 @@ module.exports = new class CourseController extends Controller {
 
      index(req, res, next) {
         try {
-                    this.model.Course.find({}).exec((err , result) => {
+                    this.model.Course.find({}).populate('Episode CustomerUser Comment').exec((err , result) => {
             if (result) {
                 return res.json({
                     data: result,
