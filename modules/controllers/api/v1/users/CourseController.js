@@ -4,6 +4,7 @@ module.exports = new class CourseController extends Controller {
 
     store(req, res, next) {
         try {
+
             let newCourse = new this.model.Course({
                 userID: req.body.course.userID,
                 title: req.body.course.title,
@@ -28,22 +29,24 @@ module.exports = new class CourseController extends Controller {
                         success: false
                     });
                 } else {
-                    this.model.Episode.insertMany(req.body.episode, (err, result) => {
-                            if (err) {
-                                return res.json({
-                                    data: err,
-                                    message: err,
-                                    success: false
-                                });
-                            } else
+                    let count=req.body.episode.length;
+                    for(var i=0;i<count;i++){
+                        let newEpisode =   this.model.Episode({
+                            courseID:newCourse['_doc']._id,
+                            title:req.body.episode[i].title,
+                            type: req.body.episode[i].type,
+                            body: req.body.episode[i].body,
+                            time: req.body.episode[i].time,
+                            number: req.body.episode[i].number,
+                            videoUrl: req.body.episode[i].videoUrl,
+                        });
+                        newEpisode.save()
+                    }
 
-                                return res.json({
-                                    data: 'دوره جدید با موفقیت ثبت شد',
-                                    success: true
-                                });
-
-                        }
-                    )
+                    return res.json({
+                        data: 'دوره جدید با موفقیت ثبت شد',
+                        success: true
+                    });
 
                 }
 
