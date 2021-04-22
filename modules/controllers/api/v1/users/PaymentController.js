@@ -7,7 +7,7 @@ module.exports = new class PaymentController extends Controller {
         let params = {
             MerchantID: '07a57b2d-48fd-416c-97b7-9aa686ecb050',
             Amount: req.body.price,
-            CallbackURL: 'http://api.hd724.com/api/v1/user/payment/checker?price=' + req.body.price + '&',
+            CallbackURL: 'http://api.hd724.com/api/v1/users/payment/checker?price=' + req.body.price + '&',
             Description: 'پرداخت هزینه خرید نمونه سوال',
         };
         let options = {
