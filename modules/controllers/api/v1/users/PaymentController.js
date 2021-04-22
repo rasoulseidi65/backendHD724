@@ -24,13 +24,13 @@ module.exports = new class PaymentController extends Controller {
             .then(data => {
                 if (data.Status === 100) {
                     this.model.Payment({
-                        userID: req.body.user.userID,
+                        userID: '676776',
                         resNumber: data.Authority,
-                        price: req.body.payment.price,
-                        statePayment: false,
-                        date: req.body.user.date,
-                        time: req.body.user.time,
-                        mobile: req.body.user.mobile
+                        price: '2000',
+                        statePayment: 'ناموفق',
+                        date: '666',
+                        time: '777',
+                        mobile: '09166996165'
                     }).save(err => {
                         if (err) {
                             throw err;
