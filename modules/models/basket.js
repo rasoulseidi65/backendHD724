@@ -3,6 +3,8 @@ const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 const BasketSchema = new Schema({
     userID: { type:mongoose.Schema.ObjectId, ref:'CustomerUser'},
+    productID: { type:mongoose.Schema.ObjectId,},
+    resNumber:{ type: String, required: true },//شناسه پرداخت
     refID:{ type: String },
     price: { type: String },
     offerPercent: { type: String },

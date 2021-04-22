@@ -4,8 +4,8 @@ module.exports = new class PaymentController extends Controller {
     payment(req, res) {
         let params = {
             MerchantID: '07a57b2d-48fd-416c-97b7-9aa686ecb050',
-            Amount: 20000,
-            CallbackURL: 'http://api.hd724.com/api/v1/users/payment/checker',
+            Amount: req.body.user.price,
+            CallbackURL: 'http://localhost:3125/api/v1/users/payment/checker?price=' +  req.body.user.price + '&',
             Description: 'پرداخت هزینه خرید نمونه سوال',
         };
         let options = {
@@ -22,34 +22,34 @@ module.exports = new class PaymentController extends Controller {
             .then(data => {
                 if (data.Status === 100) {
                     this.model.Payment({
-                        userID: '5fc35f1792b9af68214e7870',
+                        userID: req.body.user.userID,
                         resNumber: data.Authority,
-                        price: '2000',
+                        price: req.body.user.price,
                         statePayment: 'ناموفق',
-                        date: '666',
-                        time: '777',
-                        mobile: '09166996165'
+                        date:  req.body.user.date,
+                        time:  req.body.user.time,
+                        mobile: req.body.user.mobile
                     }).save(err => {
                         if (err) {
                             throw err;
                         }
                         else {
-                            // let countProduct = req.body.product;
-                            // for (var i = 0; i < countProduct.length; i++) {
+                            let countProduct = req.body.product;
+                            for (var i = 0; i < countProduct.length; i++) {
                                 this.model.Basket({
-                                    userID:'5fc35f1792b9af68214e7870',
-                                    productID: 'llllll',
-                                    refID: data.Authority,
-                                    price: '48000',
-                                    date: '809',
-                                    time: '98',
+                                    userID: req.body.user.userID,
+                                    productID: req.body.product[i]['cartList']._id,
+                                    resNumber: data.Authority,
+                                    price: req.body.product[i]['cartList'].price,
+                                    date:  req.body.user.date,
+                                    time:  req.body.user.time,
 
                                 }).save(err => {
                                     if (err) {
                                         throw err;
                                     }
                                 });
-                            // }
+                            }
 
                         }
 
@@ -69,7 +69,7 @@ module.exports = new class PaymentController extends Controller {
             this.model.Payment.find({ resNumber: req.query.Authority }).exec((err, result) => {
                 let params = {
                     MerchantID: '07a57b2d-48fd-416c-97b7-9aa686ecb050',
-                    Amount:20000,
+                    Amount:req.query.price,
                     Authority: req.query.Authority,
                 };
                 let options = {
@@ -87,14 +87,26 @@ module.exports = new class PaymentController extends Controller {
                         console.log(data);
                         if (data.Status === 100) {
                             //console.log('تراکنش با موفقیت انجام شد');
-                            // this.model.Payment.find({ resNumber: req.query.Authority }).exec((err, resultPayment) => {
-                            //     if (resultPayment.length > 0) {
-                            //         this.model.Payment.updateOne(
-                            //             { resNumber: req.query.Authority },
-                            //             { $set: { statusPayment: 'موفق', refID: data.RefID } }).exec((err, result) => {
-                            //             });
-                            //     }
-                            // });
+                            this.model.Payment.find({ resNumber: req.query.Authority }).exec((err, resultPayment) => {
+                                if (resultPayment.length > 0) {
+                                    this.model.Payment.updateOne(
+                                        { resNumber: req.query.Authority },
+                                        { $set: { statusPayment: 'موفق', refID: data.RefID } }).exec((err, result) => {
+                                        });
+                                    this.model.Basket.find({resNumber: req.query.Authority}).exec((err, resultBasket) => {
+                                        if (resultBasket.length > 0) {
+                                            this.model.Basket.updateMany(
+                                                { resNumber: req.query.Authority},
+                                                { $set: { success: 'موفق',refID: data.RefID}}).exec((err, result) => {
+                                                if (result) {
+                                                    return res.redirect('http://www.HD724.com//#/home/call-back/true');
+                                                }
+                                            });
+                                        }
+                                    });
+
+                                }
+                            });
 
 
                         } else {
