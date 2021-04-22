@@ -5,7 +5,7 @@ module.exports = new class PaymentController extends Controller {
     payment(req, res) {
 
         let params = {
-            MerchantID: 'c3d32f57-fd02-417d-9bfd-adf62d6a5302',
+            MerchantID: '07a57b2d-48fd-416c-97b7-9aa686ecb050',
             Amount: 20000,
             CallbackURL: 'http://api.hd724.com/api/v1/users/payment/checker',
             Description: 'پرداخت هزینه خرید نمونه سوال',
@@ -36,24 +36,23 @@ module.exports = new class PaymentController extends Controller {
                             throw err;
                         }
                         else {
-                            let countProduct = req.body.product;
-                            for (var i = 0; i < countProduct.length; i++) {
-                                let x = countProduct[i]['product']
+                            // let countProduct = req.body.product;
+                            // for (var i = 0; i < countProduct.length; i++) {
 
                                 this.model.Basket({
-                                    userID: req.body.user.userID,
-                                    productID: x['cartList']._id,
+                                    userID:'098098',
+                                    productID: 'llllll',
                                     refID: data.Authority,
-                                    price: x['cartList'].price,
-                                    date: req.body.user.date,
-                                    time: req.body.user.time,
+                                    price: '48000',
+                                    date: '809',
+                                    time: '98',
 
                                 }).save(err => {
                                     if (err) {
                                         throw err;
                                     }
                                 });
-                            }
+                            // }
 
 
 
@@ -72,11 +71,10 @@ module.exports = new class PaymentController extends Controller {
     }
 
     checker(req, res, next) {
-        console.log(req.query.price);
         try {
             this.model.Payment.find({ resNumber: req.query.Authority }).exec((err, result) => {
                 let params = {
-                    MerchantID: 'c3d32f57-fd02-417d-9bfd-adf62d6a5302',
+                    MerchantID: '07a57b2d-48fd-416c-97b7-9aa686ecb050',
                     Amount:20000,
                     Authority: req.query.Authority,
                 };
