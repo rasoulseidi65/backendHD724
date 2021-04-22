@@ -5,7 +5,7 @@ module.exports = new class PaymentController extends Controller {
     payment(req, res) {
 
         let params = {
-            MerchantID: '07a57b2d-48fd-416c-97b7-9aa686ecb050',
+            MerchantID: 'c3d32f57-fd02-417d-9bfd-adf62d6a5302',
             Amount: 20000,
             CallbackURL: 'http://api.hd724.com/api/v1/users/payment/checker',
             Description: 'پرداخت هزینه خرید نمونه سوال',
@@ -76,7 +76,7 @@ module.exports = new class PaymentController extends Controller {
         try {
             this.model.Payment.find({ resNumber: req.query.Authority }).exec((err, result) => {
                 let params = {
-                    MerchantID: '07a57b2d-48fd-416c-97b7-9aa686ecb050',
+                    MerchantID: 'c3d32f57-fd02-417d-9bfd-adf62d6a5302',
                     Amount:20000,
                     Authority: req.query.Authority,
                 };
