@@ -13,6 +13,7 @@ const Province = require(`${config.path.model}/province`);
 const Rating = require(`${config.path.model}/rating`);
 
 const Payment = require(`${config.path.model}/payment`);
+const Basket = require(`${config.path.model}/basket`);
 const Wallet = require(`${config.path.model}/wallet`);
 
 const Article=require(`${config.path.model}/article`);
@@ -26,7 +27,7 @@ const Grade=require(`${config.path.model}/grade`);
 const Coupon=require(`${config.path.model}/coupon`);
 module.exports = class Controller {
     constructor() {
-        this.model = { AdminUser,Course,Episode,Article, CustomerUser,Handout,Grade,Coupon,
+        this.model = { AdminUser,Course,Episode,Article, CustomerUser,Handout,Grade,Coupon,Basket,
             Comment,Question, Answer, Teacher,  Products, CartCustom, City, Country,
             Slider, Province,Rating  ,Payment,Wallet,Major,subCategoryQuestions}
     }

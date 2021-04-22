@@ -5,7 +5,7 @@ const mongoosePaginate = require('mongoose-paginate');
 
 
 const PaymentSchema = new Schema({
-    customer_id: {type:mongoose.Schema.ObjectId, required: true,ref:'Wallet' },//کد مشتری
+    userID: {type:mongoose.Schema.ObjectId, required: true },//کد مشتری
     resNumber:{ type: String, required: true },//شناسه پرداخت
     price:{ type: Number, required: true },//پول شارژ
     statusPayment:{type: String, default: 'ناموفق'},//وضعیت تراکنش
