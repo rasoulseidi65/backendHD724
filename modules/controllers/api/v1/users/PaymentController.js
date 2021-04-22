@@ -1,9 +1,7 @@
 const Controller = require(`${config.path.controller}/Controller`);
 const request = require('request-promise');
-
 module.exports = new class PaymentController extends Controller {
     payment(req, res) {
-
         let params = {
             MerchantID: '07a57b2d-48fd-416c-97b7-9aa686ecb050',
             Amount: 20000,
@@ -24,7 +22,7 @@ module.exports = new class PaymentController extends Controller {
             .then(data => {
                 if (data.Status === 100) {
                     this.model.Payment({
-                        userID: '676776',
+                        userID: '5fc35f1792b9af68214e7870',
                         resNumber: data.Authority,
                         price: '2000',
                         statePayment: 'ناموفق',
@@ -38,9 +36,8 @@ module.exports = new class PaymentController extends Controller {
                         else {
                             // let countProduct = req.body.product;
                             // for (var i = 0; i < countProduct.length; i++) {
-
                                 this.model.Basket({
-                                    userID:'098098',
+                                    userID:'5fc35f1792b9af68214e7870',
                                     productID: 'llllll',
                                     refID: data.Authority,
                                     price: '48000',
@@ -54,12 +51,9 @@ module.exports = new class PaymentController extends Controller {
                                 });
                             // }
 
-
-
                         }
 
                     });
-
                     return res.json({
                         data: `https://www.zarinpal.com/pg/StartPay/${data.Authority}`,
                         sucess: true
@@ -93,30 +87,14 @@ module.exports = new class PaymentController extends Controller {
                         console.log(data);
                         if (data.Status === 100) {
                             //console.log('تراکنش با موفقیت انجام شد');
-                            this.model.Payment.find({ resNumber: req.query.Authority }).exec((err, resultPayment) => {
-                                if (resultPayment.length > 0) {
-                                    this.model.Payment.updateOne(
-                                        { resNumber: req.query.Authority },
-                                        { $set: { statusPayment: 'موفق', refID: data.RefID } }).exec((err, result) => {
-                                        });
-
-                                    this.model.Basket.find({refID: req.query.Authority}).exec((err, resultBasket) => {
-                                        if (resultBasket.length > 0) {
-                                            this.model.Basket.update(
-                                                { refID: req.query.Authority},
-                                                { $set: { sucess: 'موفق'}}).exec((err, result) => {
-                                                });
-                                            for (let i = 0; i < resultBasket.length; i++) {
-                                                this.model.Inventory.findOneAndUpdate({ productID: resultBasket[i]['_doc'].productID },{count:resultBasket[i]['_doc'].count}).exec((err, result) => {
-                                                    if (result) {                                                    
-                                                       return res.redirect('http://www.hd724.com//#/home/call-back/true');
-                                                    }
-                                                })
-                                            }
-                                        }
-                                    });
-                                }
-                            });
+                            // this.model.Payment.find({ resNumber: req.query.Authority }).exec((err, resultPayment) => {
+                            //     if (resultPayment.length > 0) {
+                            //         this.model.Payment.updateOne(
+                            //             { resNumber: req.query.Authority },
+                            //             { $set: { statusPayment: 'موفق', refID: data.RefID } }).exec((err, result) => {
+                            //             });
+                            //     }
+                            // });
 
 
                         } else {
