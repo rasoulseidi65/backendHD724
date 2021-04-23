@@ -14,7 +14,8 @@ const CustomerUserSchema = new Schema({
     accountNumber:{type: String},
     shabaNumber:{type: String},
     password: { type: String, required: true },//رمز
-    mobile: { type: String, required: true }//شماره موبایل
+    mobile: { type: String, required: true },//شماره موبایل
+    type:{type: String},//user/teacher
 });
 CustomerUserSchema.plugin(mongoosePaginate);
 CustomerUserSchema.pre('save', function (next) {
