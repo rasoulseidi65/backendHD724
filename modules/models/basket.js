@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 const BasketSchema = new Schema({
-    userID: { type:mongoose.Schema.ObjectId, ref:'CustomerUser'},
-    productID: { type:mongoose.Schema.ObjectId,},
+    userID: { type:mongoose.Schema.ObjectId},
+    productID: { type:mongoose.Schema.ObjectId, ref:'Question'},
     resNumber:{ type: String, required: true },//شناسه پرداخت
     refID:{ type: String },
     price: { type: String },
@@ -26,5 +26,16 @@ BasketSchema.virtual('payment',{
     foreignField:'userID',
 
 });
+BasketSchema.virtual('course',{
+    ref:'Course',
+    localField:'productID',
+    foreignField:'_id',
 
+});
+BasketSchema.virtual('Question',{
+    ref:'Question',
+    localField:'productID',
+    foreignField:'_id',
+
+});
 module.exports = mongoose.model('Basket', BasketSchema);

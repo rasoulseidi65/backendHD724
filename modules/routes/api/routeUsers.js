@@ -21,8 +21,7 @@ const CustomerRatingController = require(`${ControllerApi}/v1/users/RatingContro
 const CourseController = require(`${ControllerApi}/v1/users/CourseController`);
 const ArticleController = require(`${ControllerApi}/v1/users/ArticleController`);
 const PaymentController = require(`${ControllerApi}/v1/users/PaymentController`);
-// const EposideController = require(`${ControllerApi}/v1/user/EposideController`);
-
+const BasketController=require(`${ControllerApi}/v1/users/BasketController`);
 
 //customer router***********************************************
 
@@ -105,6 +104,7 @@ customerRouter.get('/topproduct', CustomerProductsController.indextopproduct.bin
 //payment
 router.post('/payment',PaymentController.payment.bind(PaymentController));
 router.get('/payment/checker', PaymentController.checker.bind(PaymentController));
-
+//basket
+router.get('/basketList/:id', BasketController.index.bind(BasketController));
 router.use('', customerRouter);
 module.exports = router;
