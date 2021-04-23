@@ -32,6 +32,8 @@ module.exports = new class AuthCustomerController extends Controller {
                     address:req.body.address,
                     password:req.body.password,
                     type:req.body.type,
+                    CVpath:req.body.CVpath,
+                    madrak:req.body.madrak,
                 }).save(err => {
                     if (err) {
                         throw err;
