@@ -8,7 +8,7 @@ module.exports = new class BasketController extends Controller {
             return;
         this.model.Basket.find({userID:req.params.id,success:'موفق'}).populate('user Question course Payment ').exec((err, cartcustom) => {
             if (err) throw err;
-            if (cartcustom) {
+            if (cartcustom!=null) {
                 return res.json({
                     data: cartcustom,
                     success: true
