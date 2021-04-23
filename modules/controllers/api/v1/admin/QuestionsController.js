@@ -34,10 +34,7 @@ module.exports = new class CategoryQuestionsController extends Controller {
         })
     }
     findByMajorID(req, res) {
-        req.checkBody('majorID', ' کد رشته تحصیلی نمیتواند خالی بماند').notEmpty();
-        this.escapeAndTrim(req, 'majorID');
-        if (this.showValidationErrors(req, res))
-            return;
+
         this.model.Question.find({majorID:req.body.majorID}).populate('Major').exec((err, result) => {
             if (result!=null) {
                 return res.json({
