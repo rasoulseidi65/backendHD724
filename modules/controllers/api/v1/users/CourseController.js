@@ -98,7 +98,6 @@ module.exports = new class CourseController extends Controller {
     }
 
     courseUser(req, res, next) {
-
         this.model.Course.find({userID: req.body.userID}).exec((err, result) => {
             if (err) throw err;
             if (result) {
