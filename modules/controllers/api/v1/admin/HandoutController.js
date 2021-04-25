@@ -33,6 +33,20 @@ module.exports = new class HandoutController extends Controller {
             })
         })
     }
+    findByMajorIDHandout(req, res) {
+        this.model.Handout.find({majorID:req.body.majorID}).populate('Major').exec((err, result) => {
+            if (result!=null) {
+                return res.json({
+                    data: result,
+                    success: true
+                })
+            }
+            res.json({
+                data: 'یافت نشد',
+                success: false
+            })
+        })
+    }
 
     store(req, res) {
         // req.checkParams('majorID', 'رشته تحصلی  وارد نکردید').notEmpty();

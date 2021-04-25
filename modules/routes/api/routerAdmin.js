@@ -126,7 +126,7 @@ adminRouter.get('/question', QuestionController.index.bind(QuestionController));
 adminRouter.post('/question', QuestionController.store.bind(QuestionController));
 adminRouter.get('/question/:id', QuestionController.single.bind(QuestionController));
 adminRouter.delete('/question/:id', QuestionController.destroy.bind(QuestionController));
-adminRouter.post('/findByMajorID', QuestionController.findByMajorID.bind(QuestionController));
+adminRouter.post('/findByMajorIDQuestion', QuestionController.findByMajorIDQuestion.bind(QuestionController));
 
 //CategoryQuestions and subCategory
 adminRouter.get('/major', MajorController.index.bind(MajorController)
@@ -145,6 +145,8 @@ adminRouter.get('/handout', HandoutController.index.bind(HandoutController));
 adminRouter.post('/handout', HandoutController.store.bind(HandoutController));
 adminRouter.get('/handout/:id', HandoutController.single.bind(HandoutController));
 adminRouter.delete('/handout/:id', HandoutController.destroy.bind(HandoutController));
+adminRouter.post('/findByMajorIDHandout', QuestionController.findByMajorIDHandout.bind(findByMajorIDHandout));
+
 //grade
 adminRouter.get('/grade', GradeController.index.bind(GradeController));
 adminRouter.post('/grade', GradeController.store.bind(GradeController));

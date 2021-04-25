@@ -33,8 +33,7 @@ module.exports = new class CategoryQuestionsController extends Controller {
             })
         })
     }
-    findByMajorID(req, res) {
-
+    findByMajorIDQuestion(req, res) {
         this.model.Question.find({majorID:req.body.majorID}).populate('Major').exec((err, result) => {
             if (result!=null) {
                 return res.json({
@@ -55,7 +54,6 @@ module.exports = new class CategoryQuestionsController extends Controller {
         req.checkBody('answer', ' پاسخنامه نمیتواند خالی بماند').notEmpty();
         req.checkBody('typeQuestion', ' نوع سوال نمیتواند خالی بماند').notEmpty();
         req.checkBody('majorID', ' کد رشته تحصیلی نمیتواند خالی بماند').notEmpty();
-
         if (this.showValidationErrors(req, res))
             return;
         let newCategory = new this.model.Question({
