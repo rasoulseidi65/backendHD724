@@ -145,7 +145,7 @@ adminRouter.get('/handout', HandoutController.index.bind(HandoutController));
 adminRouter.post('/handout', HandoutController.store.bind(HandoutController));
 adminRouter.get('/handout/:id', HandoutController.single.bind(HandoutController));
 adminRouter.delete('/handout/:id', HandoutController.destroy.bind(HandoutController));
-adminRouter.post('/findByMajorIDHandout', QuestionController.findByMajorIDHandout.bind(findByMajorIDHandout));
+adminRouter.post('/findByMajorIDHandout', HandoutController.findByMajorIDHandout.bind(HandoutController));
 
 //grade
 adminRouter.get('/grade', GradeController.index.bind(GradeController));
