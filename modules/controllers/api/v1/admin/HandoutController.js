@@ -33,9 +33,15 @@ module.exports = new class HandoutController extends Controller {
             })
         })
     }
+
     findByMajorIDHandout(req, res) {
-        this.model.Handout.find({majorID:req.body.majorID}).populate('Major Grade').exec((err, result) => {
-            if (result!=null) {
+        this.model.Handout.find({majorID: req.body.majorID}).populate({
+            path: 'Major', populate: {
+                path: 'Grade',
+                Model: 'Grade'
+            }
+        }).exec((err, result) => {
+            if (result != null) {
                 return res.json({
                     data: result,
                     success: true
@@ -58,14 +64,14 @@ module.exports = new class HandoutController extends Controller {
         if (this.showValidationErrors(req, res))
             return;
         let newCategory = new this.model.Handout({
-            majorID:req.body.majorID,
+            majorID: req.body.majorID,
             title: req.body.title,
             price: req.body.price,
             linkFile: req.body.linkFile,
-            countPage:req.body.countPage,
-            author:req.body.author,
-            section:req.body.section,
-            text:req.body.text,
+            countPage: req.body.countPage,
+            author: req.body.author,
+            section: req.body.section,
+            text: req.body.text,
         })
         newCategory.save(err => {
             if (err) throw err;
@@ -82,14 +88,14 @@ module.exports = new class HandoutController extends Controller {
         if (this.showValidationErrors(req, res))
             return;
         this.model.Handout.findByIdAndUpdate(req.params.id, {
-            majorID:req.body.majorID,
+            majorID: req.body.majorID,
             title: req.body.title,
             price: req.body.price,
             linkFile: req.body.linkFile,
-            countPage:req.body.countPage,
-            author:req.body.author,
-            section:req.body.section,
-            text:req.body.text,
+            countPage: req.body.countPage,
+            author: req.body.author,
+            section: req.body.section,
+            text: req.body.text,
         }, (err, result) => {
             if (err) throw err;
             if (result) {
