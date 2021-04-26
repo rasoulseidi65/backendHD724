@@ -34,7 +34,7 @@ module.exports = new class HandoutController extends Controller {
         })
     }
     findByMajorIDHandout(req, res) {
-        this.model.Handout.find({majorID:req.body.majorID}).populate('Major').exec((err, result) => {
+        this.model.Handout.find({majorID:req.body.majorID}).populate('Major Grade').exec((err, result) => {
             if (result!=null) {
                 return res.json({
                     data: result,
