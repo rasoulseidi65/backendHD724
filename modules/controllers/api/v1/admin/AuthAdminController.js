@@ -3,21 +3,20 @@ const UserTransform = require(`${config.path.transform}/v1/UserTransform`);
 const bcrypt = require('bcrypt');
 
 
-module.exports = new class UserController extends Controller {
+module.exports = new class AdminController extends Controller {
     register(req , res) {
         // console.log(req.body.pic1)
         console.log('req.body');
         req.checkBody('name' , 'وارد کردن فیلد نام الزامیست').notEmpty();
-        req.checkBody('email' , 'وارد کردن فیلد ایمیل الزامیست').notEmpty();
+        req.checkBody('mobile' , 'وارد کردن فیلد ایمیل الزامیست').notEmpty();
         req.checkBody('password' , 'وارد کردن فیلد پسورد الزامیست').notEmpty();
-        req.checkBody('email' , 'فرمت ایمیل وارد شده صحیح نیست').isEmail();
 
         if(this.showValidationErrors(req, res))
             return;
     
         this.model.AdminUser({
             name : req.body.name,
-            email : req.body.email,
+            mobile : req.body.mobile,
             password : req.body.password
         }).save(err => {
             if(err) {
@@ -39,13 +38,13 @@ module.exports = new class UserController extends Controller {
     }
 
     login(req , res) {
-        req.checkBody('email' , 'وارد کردن فیلد ایمیل الزامیست').notEmpty();
+        req.checkBody('mobile' , 'وارد کردن فیلد ایمیل الزامیست').notEmpty();
         req.checkBody('password' , 'وارد کردن فیلد پسورد الزامیست').notEmpty();
 
         if(this.showValidationErrors(req, res))
             return;
 
-        this.model.AdminUser.findOne({ email : req.body.email } , (err , user) => {
+        this.model.AdminUser.findOne({ mobile : req.body.mobile } , (err , user) => {
             if(err) throw err;
 
             if(user == null)

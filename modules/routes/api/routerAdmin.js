@@ -18,7 +18,7 @@ const AdminCountryController = require(`${ControllerApi}/v1/admin/CountryControl
 const AdminProvinceController = require(`${ControllerApi}/v1/admin/ProvinceController`);
 const AdminProductsController = require(`${ControllerApi}/v1/admin/ProductsController`);
 const AdminSliderController = require(`${ControllerApi}/v1/admin/SliderController`);
-const AdminAuthUserController = require(`${ControllerApi}/v1/admin/AuthUserController`);
+const AdminAuthAdminController = require(`${ControllerApi}/v1/admin/AuthAdminController`);
 const AdminAddAdminController = require(`${ControllerApi}/v1/admin/AddAdminController`);
 const AdminUserController = require(`${ControllerApi}/v1/admin/UserController`);
 const AdminCustomeruserController = require(`${ControllerApi}/v1/admin/CustomeruserController`);
@@ -118,8 +118,8 @@ adminRouter.delete('/comment/:id', AdminCommentController.destroy.bind(AdminComm
 adminRouter.get('/cartcustom', apiAuthAdminUser,AdminCartcustomController.index.bind(AdminCartcustomController));
 adminRouter.get('/cartcustom/:id', AdminCartcustomController.single.bind(AdminCartcustomController));
 
-adminRouter.post('/login', AdminAuthUserController.login.bind(AdminAuthUserController));
-adminRouter.post('/register', AdminAuthUserController.register.bind(AdminAuthUserController));
+adminRouter.post('/login', AdminAuthAdminController.login.bind(AdminAuthAdminController));
+adminRouter.post('/register', AdminAuthAdminController.register.bind(AdminAuthAdminController));
 
 //Questions
 adminRouter.get('/question', QuestionController.index.bind(QuestionController));
