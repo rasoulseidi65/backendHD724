@@ -63,7 +63,8 @@ module.exports = new class AdminController extends Controller {
 
 
                 return res.json({
-                    data : new UserTransform().transform(user,true),
+                    data:user,
+                    // data : new UserTransform().transform(user,true),
                     success : true
                 });
             })
