@@ -41,7 +41,7 @@ customerRouter.get('/viewMaxCourse',CourseController.viewMaxCourse.bind(CourseCo
 customerRouter.get('/article', ArticleController.index.bind(ArticleController));
 customerRouter.get('/findArticle/:id', ArticleController.single.bind(ArticleController));
 customerRouter.get('/newest', ArticleController.newest.bind(ArticleController));
-
+customerRouter.put('/viewCount', ArticleController.updateViewCount.bind(ArticleController));
 // auth customer
 customerRouter.post('/login', CustomerAuthCustomerController.login.bind(CustomerAuthCustomerController));
 customerRouter.post('/register', CustomerAuthCustomerController.register.bind(CustomerAuthCustomerController));

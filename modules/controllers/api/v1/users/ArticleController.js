@@ -38,7 +38,7 @@ module.exports = new class ArticleController extends Controller {
     updateViewCount(req,res){
         this.model.Article.findByIdAndUpdate(req.body._id ,
             {
-               viewCount
+               viewCount:req.body.viewCount
             },
             (err , article) => {
                 res.json('ویرایش با موفقیت انجام شد');
