@@ -35,6 +35,15 @@ module.exports = new class ArticleController extends Controller {
             })
         })
     }
+    updateViewCount(req,res){
+        this.model.Article.findByIdAndUpdate(req.body._id ,
+            {
+               viewCount
+            },
+            (err , article) => {
+                res.json('ویرایش با موفقیت انجام شد');
+            }            );
+    }
     newest(req , res) {
         this.model.Article.find({}).sort({date:-1}).limit(4).exec((err , article) => {
             if(err) throw err;

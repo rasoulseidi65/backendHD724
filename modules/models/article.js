@@ -9,7 +9,7 @@ const ArticleSchema = new Schema({
     author : { type : String , required : true},
     image : { type :String},
     detail : { type :String,required:true},
-    viewCount : { type :String,default:'0'},
+    viewCount : { type :Number,default:0},
 });
 
 ArticleSchema.plugin(mongoosePaginate);
