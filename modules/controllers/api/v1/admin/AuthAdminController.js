@@ -56,7 +56,7 @@ module.exports = new class AdminController extends Controller {
             bcrypt.compare(req.body.password , user.password , (err , status) => {
 
                 if(! status)
-                    return res.status(422).json({
+                    return res.json({
                         success : false,
                         data : 'پسورد وارد شده صحیح نمی باشد'
                     })
