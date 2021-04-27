@@ -136,7 +136,22 @@ module.exports = new class CourseController extends Controller {
             next(err);
         }
     }
+    updateViewCount(req, res) {
+        this.model.Course.findByIdAndUpdate(req.body._id,
+            {
+                viewCount: req.body.viewCount
+            },
+            (err, article) => {
+                if (err) throw err;
+                if (article) {
+                    res.json({
+                        data: 'ویرایش با موفقیت انجام شد',
+                        success: true
+                    });
+                }
+            })
 
+    }
     async viewMaxCourse(req, res, next) {
         try {
 

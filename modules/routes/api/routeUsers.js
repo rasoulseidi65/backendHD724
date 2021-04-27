@@ -36,7 +36,7 @@ customerRouter.post('/courseFind',CourseController.single.bind(CourseController)
 customerRouter.post('/courseUser',CourseController.courseUser.bind(CourseController));
 customerRouter.get('/newCourse',CourseController.newCourse.bind(CourseController));
 customerRouter.get('/viewMaxCourse',CourseController.viewMaxCourse.bind(CourseController));
-
+customerRouter.put('/viewCountCourse', CourseController.updateViewCount.bind(ArticleController));
 //Article
 customerRouter.get('/article', ArticleController.index.bind(ArticleController));
 customerRouter.get('/findArticle/:id', ArticleController.single.bind(ArticleController));
