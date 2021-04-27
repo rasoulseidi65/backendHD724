@@ -6,8 +6,8 @@ const bcrypt = require('bcrypt');
 module.exports = new class AdminController extends Controller {
     register(req , res) {
         // console.log(req.body.pic1)
-        console.log('req.body');
-        req.checkBody('name' , 'وارد کردن فیلد نام الزامیست').notEmpty();
+
+        req.checkBody('fullName' , 'وارد کردن فیلد نام الزامیست').notEmpty();
         req.checkBody('mobile' , 'وارد کردن فیلد ایمیل الزامیست').notEmpty();
         req.checkBody('password' , 'وارد کردن فیلد پسورد الزامیست').notEmpty();
 
@@ -15,7 +15,7 @@ module.exports = new class AdminController extends Controller {
             return;
     
         this.model.AdminUser({
-            name : req.body.name,
+            fullName : req.body.fullName,
             mobile : req.body.mobile,
             password : req.body.password
         }).save(err => {
