@@ -107,5 +107,7 @@ router.get('/payment/checker', PaymentController.checker.bind(PaymentController)
 router.get('/displayPayment/:id', PaymentController.displayPayment.bind(PaymentController));
 //basket
 router.get('/basketList/:id', BasketController.index.bind(BasketController));
+router.get('/myPurchases/:id', BasketController.myPurchases.bind(BasketController));
+router.get('/mySales/:id', BasketController.mySales.bind(BasketController));
 router.use('', customerRouter);
 module.exports = router;
