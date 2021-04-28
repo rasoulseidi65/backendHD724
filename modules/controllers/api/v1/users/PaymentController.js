@@ -43,6 +43,7 @@ module.exports = new class PaymentController extends Controller {
                                     price: req.body.product[i]['cartList'].price,
                                     date:  req.body.user.date,
                                     time:  req.body.user.time,
+                                    statusProduct:req.body.statusProduct
 
                                 }).save(err => {
                                     if (err) {
