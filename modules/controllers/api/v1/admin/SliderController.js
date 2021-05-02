@@ -35,15 +35,11 @@ module.exports = new class SliderController extends Controller {
     }
 
     store(req, res) {
-        req.checkBody('title', ' عنوان اسلایدر نمیتواند خالی بماند').notEmpty();
-        req.checkBody('caption', ' کپشن اسلایدر نمیتواند خالی بماند').notEmpty();
         req.checkBody('imageurl', ' تصویر نمیتواند خالی بماند').notEmpty();
         this.escapeAndTrim(req, 'title caption');
         if (this.showValidationErrors(req, res))
             return;
         let newSlider = new this.model.Slider({
-            title: req.body.title,
-            caption: req.body.caption,
             imageurl: req.body.imageurl
         })
         newSlider.save(err => {
@@ -57,8 +53,6 @@ module.exports = new class SliderController extends Controller {
         if (this.showValidationErrors(req, res))
             return;
         this.model.Slider.findByIdAndUpdate(req.params.id, {
-            title: req.body.title,
-            caption: req.body.caption,
             imageurl: req.body.imageurl
         }, (err, slider) => {
             if (err) throw err;
