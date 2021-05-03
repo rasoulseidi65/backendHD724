@@ -44,7 +44,10 @@ module.exports = new class SliderController extends Controller {
         })
         newSlider.save(err => {
             if (err) throw err;
-            res.json('اسلایدر با موفقیت ثبت شد');
+            return res.json({
+                data: ' اسلاید با موفقیت ثبت شد',
+                success: true
+            });
         })
     }
 
