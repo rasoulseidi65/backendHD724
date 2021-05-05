@@ -21,7 +21,7 @@ const CourseSchema = new Schema({
     status:{type: Boolean,default:false},
     date:{type: String,default:'00:00:00'},
     time:{type: String,default:'00:00:00'},
-},{toJSON:{virtuals:true}});
+},{timestamps:true,toJSON:{virtuals:true}});
 CourseSchema.virtual('Episode',{
     ref:'Episode',
     localField:'_id',
