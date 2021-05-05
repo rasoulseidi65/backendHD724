@@ -3,7 +3,7 @@ const Controller = require(`${config.path.controller}/Controller`);
 module.exports = new class ArticleController extends Controller {
 
     index(req, res) {
-        this.model.Article.find({}).sort({title: -1}).exec((err, article) => {
+        this.model.Article.find({}).sort({createdAt: -1}).limit(4).exec((err, article) => {
             if (err) throw err;
             if (article) {
                 return res.json({
