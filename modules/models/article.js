@@ -10,7 +10,7 @@ const ArticleSchema = new Schema({
     image : { type :String},
     detail : { type :String,required:true},
     viewCount : { type :Number,default:0},
-});
+},{timestamps:true,toJSON:{virtuals:true}});
 
 ArticleSchema.plugin(mongoosePaginate);
 module.exports = mongoose.model('Article' , ArticleSchema);
