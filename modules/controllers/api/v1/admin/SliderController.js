@@ -40,6 +40,7 @@ module.exports = new class SliderController extends Controller {
         if (this.showValidationErrors(req, res))
             return;
         let newSlider = new this.model.Slider({
+            title:req.body.title,
             imageurl: req.body.imageurl
         })
         newSlider.save(err => {
@@ -56,6 +57,7 @@ module.exports = new class SliderController extends Controller {
         if (this.showValidationErrors(req, res))
             return;
         this.model.Slider.findByIdAndUpdate(req.params.id, {
+            title:req.body.title,
             imageurl: req.body.imageurl
         }, (err, slider) => {
             if (err) throw err;
