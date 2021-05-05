@@ -63,7 +63,7 @@ module.exports = new class ArticleController extends Controller {
         req.checkBody('detail' , ' متن مقاله نمیتواند خالی بماند').notEmpty();
         req.checkBody('date','تاریخ نمیتواند خالی بماند ').notEmpty();
 
-        this.escapeAndTrim(req , 'title abstract detail  author ');
+        this.escapeAndTrim(req , 'title abstract   author ');
         if(this.showValidationErrors(req, res))
             return;
         let newArticle = new this.model.Article({
