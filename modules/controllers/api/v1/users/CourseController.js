@@ -60,7 +60,7 @@ module.exports = new class CourseController extends Controller {
 
     index(req, res, next) {
         try {
-            this.model.Course.find({}).populate('Episode CustomerUser Comment')
+            this.model.Course.find({})
                 .populate({
                     path: 'Episode CustomerUser Comment', populate: {
                         path: 'answer',
