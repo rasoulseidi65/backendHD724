@@ -105,7 +105,7 @@ module.exports = new class CourseController extends Controller {
     }
 
     courseUser(req, res, next) {
-        this.model.Course.find({userID: req.body.userID}).exec((err, result) => {
+        this.model.Course.find({userID: req.body.userID}).populate('Episode CustomerUser Comment').exec((err, result) => {
             if (err) throw err;
             if (result) {
                 return res.json({
