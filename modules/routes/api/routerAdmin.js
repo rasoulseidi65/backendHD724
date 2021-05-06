@@ -105,8 +105,9 @@ adminRouter.delete('/adminuser/:id', AdminUserController.destroy.bind(AdminUserC
 adminRouter.get('/customeruser/:id', AdminCustomeruserController.single.bind(AdminCustomeruserController));
 
 //answer
-adminRouter.get('/answer', apiAuthAdminUser,AdminAnswerController.index.bind(AdminAnswerController));
+adminRouter.get('/answer',AdminAnswerController.index.bind(AdminAnswerController));
 adminRouter.get('/answer/:id', AdminAnswerController.single.bind(AdminAnswerController));
+adminRouter.post('/answer',AdminAnswerController.store.bind(AdminAnswerController));
 
 //comment
 adminRouter.get('/comment', AdminCommentController.index.bind(AdminCommentController));
