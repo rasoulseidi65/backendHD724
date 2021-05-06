@@ -83,7 +83,7 @@ module.exports = new class CourseController extends Controller {
 
     single(req, res, next) {
         this.model.Course.findOne({_id: req.body._id}).populate({
-        path: 'Episode CustomerUser Comment', populate: {
+        path: 'Episode CustomerUser Comment answer', populate: {
             path: 'answer',
                 Model: 'Answer'
         }
@@ -105,7 +105,7 @@ module.exports = new class CourseController extends Controller {
     }
 
     courseUser(req, res, next) {
-        this.model.Course.find({userID: req.body.userID}).populate('Episode CustomerUser Comment').exec((err, result) => {
+        this.model.Course.find({userID: req.body.userID}).exec((err, result) => {
             if (err) throw err;
             if (result) {
                 return res.json({
