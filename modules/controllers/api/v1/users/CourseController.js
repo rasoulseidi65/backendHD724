@@ -60,13 +60,7 @@ module.exports = new class CourseController extends Controller {
 
     index(req, res, next) {
         try {
-            this.model.Course.find({})
-                .populate({
-                    path: 'Episode CustomerUser Comment', populate: {
-                        path: 'answer',
-                        Model: 'Answer'
-                    }
-                })
+            this.model.Course.find({}).populate('Episode CustomerUser Comment')
                 .sort({createdAt: -1}).exec((err, result) => {
                 if (result) {
                     return res.json({
@@ -88,7 +82,13 @@ module.exports = new class CourseController extends Controller {
     }
 
     single(req, res, next) {
-        this.model.Course.findOne({_id: req.body._id}).populate('Episode CustomerUser Comment').exec((err, result) => {
+        this.model.Course.findOne({_id: req.body._id}).populate({
+        path: 'Episode CustomerUser Comment', populate: {
+            path: 'answer',
+                Model: 'Answer'
+        }
+    })
+            .exec((err, result) => {
             if (err) throw err;
             if (result) {
                 return res.json({
