@@ -59,6 +59,4 @@ module.exports = new class AnswerController extends Controller {
             })
         })
     }
-
- 
   }
