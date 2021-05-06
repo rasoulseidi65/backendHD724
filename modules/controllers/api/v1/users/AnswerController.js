@@ -19,7 +19,30 @@ module.exports = new class AnswerController extends Controller {
     //         })
     //         .catch(err => console.log(err));
     // }
-  
+    store(req, res) {
+        req.checkBody('name', ' نام نمیتواند خالی بماند').notEmpty();
+        req.checkBody('replay', ' متن نمیتواند خالی بماند').notEmpty();
+        req.checkBody('comment_Id', 'کد محصول نمیتواند خالی بماند').notEmpty();
+
+        if (this.showValidationErrors(req, res))
+            return;
+        let newComment = new this.model.Answer({
+            name: req.body.name,
+            replay: req.body.replay,
+            comment_Id: req.body.comment_Id,
+            date: req.body.date,
+            time: req.body.time,
+
+        })
+        newComment.save(err => {
+            if (err) throw err;
+            return res.json({
+                data:'پاسخ اظهار نظر با موفقیت ثبت شد',
+                success:true
+            });
+        })
+    }
+
     index(req, res) {
         this.model.Answer.find({}).sort({ replay: -1 }).exec((err, answer) => {
             if (err) throw err;
