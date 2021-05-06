@@ -32,7 +32,6 @@ module.exports = new class AnswerController extends Controller {
             comment_Id: req.body.comment_Id,
             date: req.body.date,
             time: req.body.time,
-
         })
         newComment.save(err => {
             if (err) throw err;

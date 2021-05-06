@@ -21,7 +21,7 @@ module.exports = new class CommentController extends Controller {
     }
 
     index(req, res) {
-        this.model.Comment.find({active: true}).sort({name: -1}).exec((err, comment) => {
+        this.model.Comment.find({active: true}).populate('answer').sort({createdAt: -1}).exec((err, comment) => {
             if (err) throw err;
             if (comment) {
                 return res.json({
