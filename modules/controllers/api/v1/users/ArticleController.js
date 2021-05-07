@@ -22,7 +22,14 @@ module.exports = new class ArticleController extends Controller {
         req.checkParams('id', 'ای دی وارد شده صحیح نیست').isMongoId();
         if (this.showValidationErrors(req, res))
             return;
-        this.model.Article.findOne({_id:req.params.id}).populate('Comment answer').exec((err, article) => {
+        this.model.Article.findOne({_id:req.params.id})
+            .populate({
+                path: 'Comment answer', populate: {
+                    path: 'answer',
+                    Model: 'Answer'
+                }
+            })
+            .exec((err, article) => {
             if (article) {
                 return res.json({
                     data: article,
