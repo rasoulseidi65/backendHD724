@@ -11,6 +11,10 @@ const ArticleSchema = new Schema({
     detail : { type :String,required:true},
     viewCount : { type :Number,default:0},
 },{timestamps:true,toJSON:{virtuals:true}});
-
+ArticleSchema.virtual('Comment',{
+    ref:'Comment',
+    localField:'_id',
+    foreignField:'id',
+});
 ArticleSchema.plugin(mongoosePaginate);
 module.exports = mongoose.model('Article' , ArticleSchema);
